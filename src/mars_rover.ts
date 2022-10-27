@@ -36,7 +36,6 @@ export class MarsRover {
         break;
       case "n":
         this.location.y += 1;
-        break;
     }
   }
 
@@ -53,7 +52,6 @@ export class MarsRover {
         break;  
       case "s":
         this.location.y += 1
-        break;
     }
   }
 
@@ -70,7 +68,6 @@ export class MarsRover {
         break;
       case "s":
         this.direction = "e"
-        break;
     }
   }
 
@@ -87,7 +84,6 @@ export class MarsRover {
         break;
       case "n":
         this.direction = "e"
-        break;
     }
   }
 
