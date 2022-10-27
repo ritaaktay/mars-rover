@@ -3,22 +3,22 @@ export class MarsRover {
     x: number,
     y: number
   };
-  public direction: "e" | "w" | "s" | "n";
+  public direction: string;
   public grid: {
     x: number,
     y: number
   };;
 
-  constructor(location: [number, number], direction: "e" | "w" | "s" | "n", grid: [number, number]) {
+  constructor(location: [number, number], direction: string, grid: [number, number]) {
     this.location = {
       x: location[0],
       y: location[1]
     };
-    this.direction = direction;
     this.grid = {
       x: grid[0],
       y: grid[1]
     };
+    this.direction = direction;
   }
 
   move = (commands: string): void => {
@@ -74,35 +74,17 @@ export class MarsRover {
   }
 
   turnLeft = (): void => {
-    switch(this.direction) {
-      case "e":
-        this.direction = "n";
-        break;
-      case "n":
-        this.direction = "w";
-        break;
-      case "w":
-        this.direction = "s";
-        break;
-      case "s":
-        this.direction = "e"
-    }
+    const directionsLeft: string[] = ["e", "n", "w", "s", "e"]
+    const indexToTheLeft: number = directionsLeft.indexOf(this.direction) + 1
+    const newDirection: string = directionsLeft[indexToTheLeft]
+    this.direction = newDirection
   }
 
   turnRight = (): void => {
-    switch(this.direction) {
-      case "e":
-        this.direction = "s";
-        break;
-      case "s":
-        this.direction = "w"
-        break;
-      case "w":
-        this.direction = "n"
-        break;
-      case "n":
-        this.direction = "e"
-    }
+    const directionsRight: string[] = ["e", "s", "w", "n", "e"]
+    const indexToTheRight: number = directionsRight.indexOf(this.direction) + 1
+    const newDirection: string = directionsRight[indexToTheRight]
+    this.direction = newDirection
   }
 
   getLocation = (): [number, number] => {
