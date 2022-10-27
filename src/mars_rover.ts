@@ -17,25 +17,27 @@ export class MarsRover {
 
   move = (commands: string): void => {
     if (commands == "f") this.moveForward()
-    if (commands == "b") {
-      switch(this.direction) {
-        case "e":
-          this.location.x -= 1;
-          break;
-        case "w":
-          console.log(this.location.x)
-          this.location.x += 1;
-          break;
-        case "s":
-          this.location.y -= 1;
-          break;
-        case "n":
-          this.location.y += 1;
-          break;
-      }
-    }
+    if (commands == "b") this.moveBackward()
     if (commands == "l") this.turnLeft()
     if (commands == "r") this.turnRight()
+  }
+
+  moveBackward = (): void => {
+    switch(this.direction) {
+      case "e":
+        this.location.x -= 1;
+        break;
+      case "w":
+        console.log(this.location.x)
+        this.location.x += 1;
+        break;
+      case "s":
+        this.location.y -= 1;
+        break;
+      case "n":
+        this.location.y += 1;
+        break;
+    }
   }
 
   moveForward = (): void => {
