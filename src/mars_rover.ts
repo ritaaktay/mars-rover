@@ -51,12 +51,11 @@ export class MarsRover {
         break;
       case "s":
         this.location.y -= 1;
+        this.wrapYAxis()
         break;
       case "n":
         this.location.y += 1;
-        if (this.location.y > this.grid.y) {
-          this.location.y = 0
-        }
+        this.wrapYAxis()
     }
   }
 
