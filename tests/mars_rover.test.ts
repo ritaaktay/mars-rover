@@ -14,7 +14,10 @@ describe("Mars Rover", () => {
   
     it("has a grid", () => {
       const rover = new MarsRover([0,0], "e", [50,50])
-      expect(rover.grid).toEqual([50,50])
+      expect(rover.grid).toEqual({
+        x: 50, 
+        y: 50
+      })
     })
   })
 
@@ -134,7 +137,7 @@ describe("Mars Rover", () => {
     })
   })
 
-  describe("receives mutliple commands", () => {
+  describe("receives mutliple commands of the same kind", () => {
     it("can move forwards twice facing east", () => {
       const rover = new MarsRover([0,0], "e", [50,50])
       rover.move("ff")
@@ -183,4 +186,20 @@ describe("Mars Rover", () => {
       expect(rover.direction).toEqual("n")
     })
   }) 
+
+  describe("receives multiple different commands", () => {
+    it("moves twice forward facing south, turns left, and moves twice forward again", () => {
+      const rover = new MarsRover([0,0], "s", [100,100])
+      rover.move("fflff")
+      expect(rover.getLocation()).toEqual([2,2])
+    })
+  })
+
+  describe("it wraps from one end of the grid to another", () => {
+    it("will continue form 0 index if x index exceeds grid during movement", () => {
+      const rover = new MarsRover([10,0], "e", [10,10])
+      rover.move("f")
+      expect(rover.getLocation()).toEqual([0,0])
+    })
+  })
 })

@@ -4,7 +4,10 @@ export class MarsRover {
     y: number
   };
   public direction: "e" | "w" | "s" | "n";
-  public grid: [number, number];
+  public grid: {
+    x: number,
+    y: number
+  };;
 
   constructor(location: [number, number], direction: "e" | "w" | "s" | "n", grid: [number, number]) {
     this.location = {
@@ -12,7 +15,10 @@ export class MarsRover {
       y: location[1]
     };
     this.direction = direction;
-    this.grid = grid;
+    this.grid = {
+      x: grid[0],
+      y: grid[1]
+    };
   }
 
   move = (commands: string): void => {
@@ -53,6 +59,9 @@ export class MarsRover {
     switch(this.direction) {
       case "e":
         this.location.x += 1;
+        if(this.location.x > this.grid.x) {
+          this.location.x = 0
+        }
         break;
       case "w":
         this.location.x -= 1
