@@ -18,37 +18,41 @@ export class MarsRover {
   move = (commands: string): void => {
     if (commands == "f") this.location.x += 1
     if (commands == "b") this.location.x -= 1
-    if (commands == "l") {
-      switch(this.direction) {
-        case "e":
-          this.direction = "n";
-          break;
-        case "n":
-          this.direction = "w";
-          break;
-        case "w":
-          this.direction = "s";
-          break;
-        case "s":
-          this.direction = "e"
-          break;
-      }
+    if (commands == "l") this.turnLeft()
+    if (commands == "r") this.turnRight()
+  }
+
+  turnLeft = (): void => {
+    switch(this.direction) {
+      case "e":
+        this.direction = "n";
+        break;
+      case "n":
+        this.direction = "w";
+        break;
+      case "w":
+        this.direction = "s";
+        break;
+      case "s":
+        this.direction = "e"
+        break;
     }
-    if (commands == "r") {
-      switch(this.direction) {
-        case "e":
-          this.direction = "s";
-          break;
-        case "s":
-          this.direction = "w"
-          break;
-        case "w":
-          this.direction = "n"
-          break;
-        case "n":
-          this.direction = "e"
-          break;
-      }
+  }
+
+  turnRight = (): void => {
+    switch(this.direction) {
+      case "e":
+        this.direction = "s";
+        break;
+      case "s":
+        this.direction = "w"
+        break;
+      case "w":
+        this.direction = "n"
+        break;
+      case "n":
+        this.direction = "e"
+        break;
     }
   }
 
