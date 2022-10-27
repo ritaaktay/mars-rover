@@ -19,12 +19,13 @@ export class MarsRover {
     commands.split("").forEach(char => {
       if (char == "f") {
         this.moveForward()
-      }
-      if (char == "b") {
+      } else if (char == "b") {
         this.moveBackward()
+      } else if (char == "l") {
+        this.turnLeft()
       }
+
     })
-    if (commands == "l") this.turnLeft()
     if (commands == "r") this.turnRight()
   }
 
