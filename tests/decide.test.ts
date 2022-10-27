@@ -40,4 +40,9 @@ describe("decide", () => {
     const decision = decide("paper", "paper")
     expect(decision).toEqual("draw")
   })
+
+  it("decides that scissors and scissors is a draw", () => {
+    const decision = decide("scissors", "scissors")
+    expect(decision).toEqual("draw")
+  })
 })

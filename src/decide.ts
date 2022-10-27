@@ -1,8 +1,7 @@
-export const decide = (choiceOne: string, choiceTwo: string): string => {
-  if(choiceOne == "rock" && choiceTwo == "rock") return "draw"
-  if (choiceOne == "paper" && choiceTwo == "paper") return "draw"
-  if ([choiceOne, choiceTwo].includes("rock")) {
-    if ([choiceOne, choiceTwo].includes("paper")) return "paper"
+export const decide = (playerOneChoice: string, playerTwoChoice: string): string => {
+  if (playerOneChoice ==  playerTwoChoice) return "draw"
+  if ([playerOneChoice, playerTwoChoice].includes("rock")) {
+    if ([playerOneChoice, playerTwoChoice].includes("paper")) return "paper"
     return "rock"
   }
   return "scissors"
