@@ -43,6 +43,7 @@ export class MarsRover {
     switch(this.direction) {
       case "e":
         this.location.x -= 1;
+        this.wrapXAxis();
         break;
       case "w":
         this.location.x += 1;
