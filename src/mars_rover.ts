@@ -3,11 +3,11 @@ export class MarsRover {
     x: number,
     y: number
   };
-  public direction: string;
   public grid: {
     x: number,
     y: number
-  };;
+  };
+  public direction: string;
 
   constructor(location: [number, number], direction: string, grid: [number, number]) {
     this.location = {
@@ -22,7 +22,14 @@ export class MarsRover {
   }
 
   move = (commands: string): void => {
+    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
+    // const commandMap: Map<K, V> = new Map()
+    // commandMap.set("f", this.moveForward)
+    // commandMap.set("b", this.moveBackward)
+    // commandMap.set("l", this.turnLeft)
+    // commandMap.set("r", this.turnRight)
     commands.split("").forEach(char => {
+      // commandMap.get(char)()
       switch(char) {
         case "f":
           this.moveForward();
