@@ -176,5 +176,11 @@ describe("Mars Rover", () => {
       rover.move("rr")
       expect(rover.direction).toEqual("w")
     })
+
+    it("can turn right thrice facing east", () => {
+      const rover = new MarsRover([2,0], "e", [50,50])
+      rover.move("rrr")
+      expect(rover.direction).toEqual("n")
+    })
   }) 
 })
