@@ -20,8 +20,10 @@ export class MarsRover {
       if (char == "f") {
         this.moveForward()
       }
+      if (char == "b") {
+        this.moveBackward()
+      }
     })
-    if (commands == "b") this.moveBackward()
     if (commands == "l") this.turnLeft()
     if (commands == "r") this.turnRight()
   }
