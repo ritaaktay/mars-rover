@@ -75,9 +75,7 @@ export class MarsRover {
         break;  
       case "s":
         this.location.y += 1
-        if (this.location.y > this.grid.y) {
-          this.location.y = 0
-        }
+        this.wrapYAxis()
     }
   }
 
@@ -122,6 +120,12 @@ export class MarsRover {
       this.location.x = 0
     } else if(this.location.x < 0) {
       this.location.x = this.grid.x
+    }
+  }
+
+  wrapYAxis = (): void => {
+    if (this.location.y > this.grid.y) {
+      this.location.y = 0
     }
   }
 }
