@@ -17,14 +17,18 @@ export class MarsRover {
 
   move = (commands: string): void => {
     commands.split("").forEach(char => {
-      if (char == "f") {
-        this.moveForward()
-      } else if (char == "b") {
-        this.moveBackward()
-      } else if (char == "l") {
-        this.turnLeft()
-      } else if (char == "r") {
-        this.turnRight()
+      switch(char) {
+        case "f":
+          this.moveForward();
+          break;
+        case "b":
+          this.moveBackward();
+          break;
+        case "l":
+          this.turnLeft();
+          break;
+        case "r":
+          this.turnRight();
       }
     })
   }
