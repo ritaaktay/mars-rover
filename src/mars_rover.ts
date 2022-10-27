@@ -64,6 +64,9 @@ export class MarsRover {
         break;
       case "w":
         this.location.x -= 1
+        if(this.location.x < 0) {
+          this.location.x = this.grid.x
+        }
         break;
       case "n":
         this.location.y -= 1
