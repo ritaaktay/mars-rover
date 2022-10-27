@@ -43,40 +43,34 @@ export class MarsRover {
     switch(this.direction) {
       case "e":
         this.location.x -= 1;
-        this.wrapXAxis();
         break;
       case "w":
         this.location.x += 1;
-        this.wrapXAxis();
         break;
       case "s":
         this.location.y -= 1;
-        this.wrapYAxis()
         break;
       case "n":
         this.location.y += 1;
-        this.wrapYAxis()
     }
+    this.wrapGrid()
   }
 
   moveForward = (): void => {
     switch(this.direction) {
       case "e":
         this.location.x += 1;
-        this.wrapXAxis();
         break;
       case "w":
         this.location.x -= 1
-        this.wrapXAxis();
         break;
       case "n":
         this.location.y -= 1
-        this.wrapYAxis()
         break;  
       case "s":
         this.location.y += 1
-        this.wrapYAxis()
     }
+    this.wrapGrid()
   }
 
   turnLeft = (): void => {
@@ -113,6 +107,11 @@ export class MarsRover {
 
   getLocation = (): [number, number] => {
     return [this.location.x, this.location.y]
+  }
+
+  wrapGrid = (): void => {
+    this.wrapXAxis();
+    this.wrapYAxis();
   }
 
   wrapXAxis = (): void => {
