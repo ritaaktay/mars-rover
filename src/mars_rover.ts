@@ -19,17 +19,37 @@ export class MarsRover {
     if (commands == "f") this.location.x += 1
     if (commands == "b") this.location.x -= 1
     if (commands == "l") {
-      if(this.direction == "e") {
-        this.direction = "n"
-      }else if(this.direction == "n") {
-        this.direction = "w"
-      }else if(this.direction == "w") {
-        this.direction = "s"
-      }else if(this.direction == "s") {
-        this.direction = "e"
+      switch(this.direction) {
+        case "e":
+          this.direction = "n";
+          break;
+        case "n":
+          this.direction = "w";
+          break;
+        case "w":
+          this.direction = "s";
+          break;
+        case "s":
+          this.direction = "e"
+          break;
       }
     }
-    if (commands == "r") this.direction = "s"
+    if (commands == "r") {
+      switch(this.direction) {
+        case "e":
+          this.direction = "s";
+          break;
+        case "s":
+          this.direction = "w"
+          break;
+        case "w":
+          this.direction = "n"
+          break;
+        case "n":
+          this.direction = "e"
+          break;
+      }
+    }
   }
 
   getLocation = (): [number, number] => {
