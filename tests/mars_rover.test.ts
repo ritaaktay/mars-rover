@@ -133,4 +133,18 @@ describe("Mars Rover", () => {
       expect(rover.direction).toEqual("e")
     })
   })
+
+  describe("receives mutliple commands", () => {
+    it("can move forwards twice facing east", () => {
+      const rover = new MarsRover([0,0], "e", [50,50])
+      rover.move("ff")
+      expect(rover.getLocation()).toEqual([2,0])
+    })
+
+    it("can move forwards thrice facing east", () => {
+      const rover = new MarsRover([0,0], "e", [50,50])
+      rover.move("fff")
+      expect(rover.getLocation()).toEqual([3,0])
+    })
+  }) 
 })
