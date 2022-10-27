@@ -225,5 +225,11 @@ describe("Mars Rover", () => {
       rover.move("f")
       expect(rover.getLocation()).toEqual([0,0])
     })
+
+    it("will continue form 0 index if y index exceeds grid during movement backward facing north", () => {
+      const rover = new MarsRover([0,10], "n", [10,10])
+      rover.move("b")
+      expect(rover.getLocation()).toEqual([0,0])
+    })
   })
 })
