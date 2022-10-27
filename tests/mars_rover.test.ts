@@ -62,6 +62,24 @@ describe("Mars Rover", () => {
       rover.move("b")
       expect(rover.getLocation()).toEqual([1,0])
     })
+
+    it("can move backward facing west", () => {
+      const rover = new MarsRover([2,0], "w", [50,50])
+      rover.move("b")
+      expect(rover.getLocation()).toEqual([3,0])
+    })
+
+    it("can move backward facing south", () => {
+      const rover = new MarsRover([2,1], "s", [50,50])
+      rover.move("b")
+      expect(rover.getLocation()).toEqual([2,0])
+    })
+
+    it("can move backward facing north", () => {
+      const rover = new MarsRover([2,1], "n", [50,50])
+      rover.move("b")
+      expect(rover.getLocation()).toEqual([2,2])
+    })
   })
 
   describe("turns left", () => {
