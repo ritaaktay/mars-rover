@@ -46,9 +46,7 @@ export class MarsRover {
         break;
       case "w":
         this.location.x += 1;
-        if(this.location.x > this.grid.x) {
-          this.location.x = 0
-        }
+        this.wrapXAxis();
         break;
       case "s":
         this.location.y -= 1;
@@ -62,9 +60,7 @@ export class MarsRover {
     switch(this.direction) {
       case "e":
         this.location.x += 1;
-        if(this.location.x > this.grid.x) {
-          this.location.x = 0
-        }
+        this.wrapXAxis();
         break;
       case "w":
         this.location.x -= 1
@@ -111,6 +107,12 @@ export class MarsRover {
 
   getLocation = (): [number, number] => {
     return [this.location.x, this.location.y]
+  }
+
+  wrapXAxis = (): void => {
+    if(this.location.x > this.grid.x) {
+      this.location.x = 0
+    }
   }
 }
 
