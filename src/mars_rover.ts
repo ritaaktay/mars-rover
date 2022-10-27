@@ -23,10 +23,10 @@ export class MarsRover {
         this.moveBackward()
       } else if (char == "l") {
         this.turnLeft()
+      } else if (char == "r") {
+        this.turnRight()
       }
-
     })
-    if (commands == "r") this.turnRight()
   }
 
   moveBackward = (): void => {
