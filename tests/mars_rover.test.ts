@@ -52,4 +52,22 @@ describe("Mars Rover", () => {
     rover.move("b")
     expect(rover.getLocation()).toEqual([1,0])
   })
+
+  it("can turn left", () => {
+    const rover = new MarsRover([1,0], "n", [50,50])
+    rover.move("l")
+    expect(rover.direction).toEqual("w")
+  })
+
+  it("can turn left", () => {
+    const rover = new MarsRover([1,0], "w", [50,50])
+    rover.move("l")
+    expect(rover.direction).toEqual("s")
+  })
+
+  it("can turn left", () => {
+    const rover = new MarsRover([1,0], "s", [50,50])
+    rover.move("l")
+    expect(rover.direction).toEqual("e")
+  })
 })

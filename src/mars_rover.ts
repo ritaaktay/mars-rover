@@ -18,7 +18,17 @@ export class MarsRover {
   move = (commands: string): void => {
     if (commands == "f") this.location.x += 1
     if (commands == "b") this.location.x -= 1
-    if (commands == "l") this.direction = "n"
+    if (commands == "l") {
+      if(this.direction == "e") {
+        this.direction = "n"
+      }else if(this.direction == "n") {
+        this.direction = "w"
+      }else if(this.direction == "w") {
+        this.direction = "s"
+      }else if(this.direction == "s") {
+        this.direction = "e"
+      }
+    }
     if (commands == "r") this.direction = "s"
   }
 
