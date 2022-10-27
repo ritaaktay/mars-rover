@@ -196,9 +196,15 @@ describe("Mars Rover", () => {
   })
 
   describe("it wraps from one end of the grid to another", () => {
-    it("will continue form 0 index if x index exceeds grid during movement", () => {
+    it("will continue form 0 index if x index exceeds grid during movement forward facing east", () => {
       const rover = new MarsRover([10,0], "e", [10,10])
       rover.move("f")
+      expect(rover.getLocation()).toEqual([0,0])
+    })
+
+    it("will continue form 0 index if x index exceeds grid during movement backward facing west", () => {
+      const rover = new MarsRover([10,0], "w", [10,10])
+      rover.move("b")
       expect(rover.getLocation()).toEqual([0,0])
     })
   })
