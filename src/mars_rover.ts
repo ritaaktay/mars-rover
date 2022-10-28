@@ -50,13 +50,8 @@ export class MarsRover {
 
   #moveForwardOrBackward = (command: command): void => {
     this.#makeMove(command + this.direction);
-    this.#wrapGrid();
-  };
-
-  #moveBackward = (): void => {
-    const moveCommand: string = "b" + this.direction;
-    this.#makeMove(moveCommand);
-    this.#wrapGrid();
+    this.#wrapXAxis();
+    this.#wrapYAxis();
   };
 
   #makeMove = (commands: string): void => {
@@ -68,13 +63,6 @@ export class MarsRover {
       .run();
   };
 
-  #turnLeft = (): void => {
-    const directionsLeft: direction[] = ["e", "n", "w", "s", "e"];
-    const indexToTheLeft: number = directionsLeft.indexOf(this.direction) + 1;
-    const newDirection: direction = directionsLeft[indexToTheLeft];
-    this.direction = newDirection;
-  };
-
   #turnRightOrLeft = (command: command): void => {
     const directions: direction[] = ["e", "s", "w", "n", "e"];
     let index = directions.indexOf(this.direction) + 1;
@@ -82,11 +70,6 @@ export class MarsRover {
       index = directions.lastIndexOf(this.direction) - 1;
     }
     this.direction = directions[index];
-  };
-
-  #wrapGrid = (): void => {
-    this.#wrapXAxis();
-    this.#wrapYAxis();
   };
 
   #wrapXAxis = (): void => {
