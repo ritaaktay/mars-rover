@@ -33,12 +33,6 @@ export class MarsRover {
     return [this.location.x, this.location.y];
   };
 
-  move = (commands: string): void => {
-    commands.split("").forEach((char) => {
-      if (this.#isCommand(char)) this.#moveOnce(char);
-    });
-  };
-
   #createMoveMap = (): Map<string, () => void> => {
     const moveMap = new Map<string, () => void>();
     moveMap.set("fe", () => (this.location.x += 1));
@@ -54,6 +48,12 @@ export class MarsRover {
 
   #isCommand = (char: any): char is command => {
     return true;
+  };
+
+  move = (commands: string): void => {
+    commands.split("").forEach((char) => {
+      if (this.#isCommand(char)) this.#moveOnce(char);
+    });
   };
 
   #moveOnce = (command: command): void => {
