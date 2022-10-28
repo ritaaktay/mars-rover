@@ -70,19 +70,6 @@ export class MarsRover {
     const moveKey: string = "f" + this.direction;
     const moveAction: (() => void) | undefined = this.moveMap.get(moveKey);
     if (moveAction != undefined) moveAction();
-    // switch (this.direction) {
-    //   case "e":
-    //     this.location.x += 1;
-    //     break;
-    //   case "w":
-    //     this.location.x -= 1;
-    //     break;
-    //   case "n":
-    //     this.location.y -= 1;
-    //     break;
-    //   case "s":
-    //     this.location.y += 1;
-    // }
     this.#wrapGrid();
   };
 
@@ -91,19 +78,6 @@ export class MarsRover {
     const moveAction: (() => void) | undefined = this.moveMap.get(moveKey);
     console.log(moveAction == undefined);
     if (moveAction != undefined) moveAction();
-    // switch (this.direction) {
-    //   case "e":
-    //     this.location.x -= 1;
-    //     break;
-    //   case "w":
-    //     this.location.x += 1;
-    //     break;
-    //   case "s":
-    //     this.location.y -= 1;
-    //     break;
-    //   case "n":
-    //     this.location.y += 1;
-    // }
     this.#wrapGrid();
   };
 

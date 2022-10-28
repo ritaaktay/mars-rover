@@ -11,7 +11,7 @@
 
 ## Refactoring
 
-- After all passing tests and implemented acceptance criteria, final refactors included swapping switch statements with a map (ex. `"f": this.moveForward`) for commands, and array indexing for right (e -> s -> w -> n -> e) and left (e -> n -> w -> s -> e) turns.
+- After all passing tests and implemented acceptance criteria, final refactors included swapping switch statements with maps (ex. `"f": this.#moveForward` or and `commandMap.get("f")()`) for commands, and array indexing for right (e -> s -> w -> n -> e) and left (e -> n -> w -> s -> e) turns.
 
 ## Testing and Coverage
 
