@@ -13,9 +13,10 @@
 
 - After all passing tests and implemented acceptance criteria, final refactors included swapping switch statements with a map (ex. `"f": this.moveForward`) for commands, and array indexing for right (e -> s -> w -> n -> e) and left (e -> n -> w -> s -> e) turns.
 
-## Test Coverage
+## Testing and Coverage
 
 - Check the commit history to see the detailed `TDD` process and `RED-GREEN-RAFACTOR` steps.
+- The test progression uses triangulation and breaks one assumption per tests.
 - An example commit might be `"passing test for wrappign y-axis moving backward facing north"` or `"passing test for wrappign y-axis moving forward facing south"`.
 
 ![](./test-coverage.png)
