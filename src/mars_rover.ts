@@ -11,7 +11,6 @@ export class MarsRover {
   };
   public direction: direction;
   private commands: command[];
-  private moveMap: Map<string, () => void>;
 
   constructor(
     location: [number, number],
@@ -28,24 +27,10 @@ export class MarsRover {
     };
     this.direction = direction;
     this.commands = ["f", "b", "r", "l"];
-    this.moveMap = this.#createMoveMap();
   }
 
   getLocation = (): [number, number] => {
     return [this.location.x, this.location.y];
-  };
-
-  #createMoveMap = (): Map<string, () => void> => {
-    const moveMap = new Map<string, () => void>();
-    moveMap.set("fe", () => (this.location.x += 1));
-    moveMap.set("fw", () => (this.location.x -= 1));
-    moveMap.set("fs", () => (this.location.y += 1));
-    moveMap.set("fn", () => (this.location.y -= 1));
-    moveMap.set("bw", () => (this.location.x += 1));
-    moveMap.set("be", () => (this.location.x -= 1));
-    moveMap.set("bn", () => (this.location.y += 1));
-    moveMap.set("bs", () => (this.location.y -= 1));
-    return moveMap;
   };
 
   #matchMove = (commands: string): void => {
@@ -86,8 +71,6 @@ export class MarsRover {
   #moveBackward = (): void => {
     const moveCommand: string = "b" + this.direction;
     this.#matchMove(moveCommand);
-    // const moveAction: (() => void) | undefined = this.moveMap.get(moveKey);
-    // if (moveAction != undefined) moveAction();
     this.#wrapGrid();
   };
 
