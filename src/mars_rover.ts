@@ -76,7 +76,6 @@ export class MarsRover {
   #moveBackward = (): void => {
     const moveKey: string = "b" + this.direction;
     const moveAction: (() => void) | undefined = this.moveMap.get(moveKey);
-    console.log(moveAction == undefined);
     if (moveAction != undefined) moveAction();
     this.#wrapGrid();
   };
