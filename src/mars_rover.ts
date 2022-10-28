@@ -10,7 +10,6 @@ export class MarsRover {
     y: number;
   };
   public direction: direction;
-  private commands: command[];
 
   constructor(
     location: [number, number],
@@ -26,24 +25,10 @@ export class MarsRover {
       y: grid[1],
     };
     this.direction = direction;
-    this.commands = ["f", "b", "r", "l"];
   }
 
   getLocation = (): [number, number] => {
     return [this.location.x, this.location.y];
-  };
-
-  #matchMove = (commands: string): void => {
-    match(commands)
-      .with("fe", "bw", () => (this.location.x += 1))
-      .with("fw", "be", () => (this.location.x -= 1))
-      .with("fs", "bn", () => (this.location.y += 1))
-      .with("fn", "bs", () => (this.location.y -= 1))
-      .run();
-  };
-
-  #isCommand = (char: any): char is command => {
-    return true;
   };
 
   move = (commands: string): void => {
@@ -52,26 +37,36 @@ export class MarsRover {
     });
   };
 
-  #moveOnce = (command: command): void => {
-    const commandMap = new Map<command, () => void>();
-    commandMap.set("f", this.#moveForward);
-    commandMap.set("b", this.#moveBackward);
-    commandMap.set("l", this.#turnLeft);
-    commandMap.set("r", this.#turnRight);
-    const moveFunction: (() => void) | undefined = commandMap.get(command);
-    if (moveFunction != undefined) moveFunction();
+  #isCommand = (char: any): char is command => {
+    return true;
   };
 
-  #moveForward = (): void => {
-    const moveCommand: string = "f" + this.direction;
-    this.#matchMove(moveCommand);
+  #moveOnce = (command: command): void => {
+    match(command)
+      .with("f", "b", () => this.#moveForwardOrBackward(command))
+      .with("r", this.#turnRight)
+      .with("l", this.#turnLeft)
+      .run();
+  };
+
+  #moveForwardOrBackward = (command: command): void => {
+    this.#makeMove(command + this.direction);
     this.#wrapGrid();
   };
 
   #moveBackward = (): void => {
     const moveCommand: string = "b" + this.direction;
-    this.#matchMove(moveCommand);
+    this.#makeMove(moveCommand);
     this.#wrapGrid();
+  };
+
+  #makeMove = (commands: string): void => {
+    match(commands)
+      .with("fe", "bw", () => (this.location.x += 1))
+      .with("fw", "be", () => (this.location.x -= 1))
+      .with("fs", "bn", () => (this.location.y += 1))
+      .with("fn", "bs", () => (this.location.y -= 1))
+      .run();
   };
 
   #turnLeft = (): void => {
