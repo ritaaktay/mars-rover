@@ -11,7 +11,7 @@
 
 ## Refactoring
 
-- After all passing tests and implemented acceptance criteria, final refactors included swapping `switch` statements with maps (ex. `"f": this.#moveForward` and `commandMap.get("f")()`) for commands, and array indexing for right (e -> s -> w -> n -> e) and left (e -> n -> w -> s -> e) turns.
+- After all passing tests and implemented acceptance criteria, final refactors included swapping `switch` statements with maps (ex. `"f": this.#moveForward` and `commandMap.get("f")()`) for commands, and array indexing for right (`["e", "s", "w", "n", "e"]`) and left (`["e", "n", "w", "s", "e"]`) turns.
 
 - `switch` statements do not offer good pattern matching, and are littered with `break` statements (without a `break` the next case will be executed even if the evaluation does not match the case!).There is this great proposal for [match](https://github.com/tc39/proposal-pattern-matching), which would have made this code much better. Thank you [John](https://github.com/JohnForster) for pointing it out.
 
