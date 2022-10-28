@@ -45,7 +45,6 @@ export class MarsRover {
     match(command)
       .with("f", "b", () => this.#moveForwardOrBackward(command))
       .with("r", "l", () => this.#turnRightOrLeft(command))
-      // .with("l", this.#turnLeft)
       .run();
   };
 
@@ -77,13 +76,11 @@ export class MarsRover {
   };
 
   #turnRightOrLeft = (command: command): void => {
-    // if command == "r" it goes + 1
-    // if command == "l" it goes - 1 but has to start from last index if "e" ! lastIndexOf()
     const directions: direction[] = ["e", "s", "w", "n", "e"];
-    const index: number =
-      command == "r"
-        ? directions.indexOf(this.direction) + 1
-        : directions.lastIndexOf(this.direction) - 1;
+    let index = directions.indexOf(this.direction) + 1;
+    if (command == "l") {
+      index = directions.lastIndexOf(this.direction) - 1;
+    }
     this.direction = directions[index];
   };
 
