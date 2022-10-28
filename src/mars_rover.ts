@@ -1,14 +1,15 @@
 export class MarsRover {
-  public location: {
+  private location: {
     x: number;
     y: number;
   };
-  public grid: {
+  public readonly grid: {
     x: number;
     y: number;
   };
   public direction: direction;
-  commands: command[];
+  private commands: command[];
+  private moveMap: Map<string, () => void>;
 
   constructor(
     location: [number, number],
@@ -25,6 +26,7 @@ export class MarsRover {
     };
     this.direction = direction;
     this.commands = ["f", "b", "r", "l"];
+    this.moveMap = this.#createMoveMap();
   }
 
   getLocation = (): [number, number] => {
@@ -35,6 +37,19 @@ export class MarsRover {
     commands.split("").forEach((char) => {
       if (this.#isCommand(char)) this.#moveOnce(char);
     });
+  };
+
+  #createMoveMap = (): Map<string, () => void> => {
+    const moveMap = new Map<string, () => void>();
+    moveMap.set("fe", () => (this.location.x += 1));
+    moveMap.set("fw", () => (this.location.x -= 1));
+    moveMap.set("fs", () => (this.location.y += 1));
+    moveMap.set("fn", () => (this.location.y -= 1));
+    moveMap.set("bw", () => (this.location.x += 1));
+    moveMap.set("be", () => (this.location.x -= 1));
+    moveMap.set("bn", () => (this.location.y += 1));
+    moveMap.set("bs", () => (this.location.y -= 1));
+    return moveMap;
   };
 
   #isCommand = (char: any): char is command => {
@@ -51,37 +66,44 @@ export class MarsRover {
     if (moveFunction != undefined) moveFunction();
   };
 
-  #moveBackward = (): void => {
-    switch (this.direction) {
-      case "e":
-        this.location.x -= 1;
-        break;
-      case "w":
-        this.location.x += 1;
-        break;
-      case "s":
-        this.location.y -= 1;
-        break;
-      case "n":
-        this.location.y += 1;
-    }
+  #moveForward = (): void => {
+    const moveKey: string = "f" + this.direction;
+    const moveAction: (() => void) | undefined = this.moveMap.get(moveKey);
+    if (moveAction != undefined) moveAction();
+    // switch (this.direction) {
+    //   case "e":
+    //     this.location.x += 1;
+    //     break;
+    //   case "w":
+    //     this.location.x -= 1;
+    //     break;
+    //   case "n":
+    //     this.location.y -= 1;
+    //     break;
+    //   case "s":
+    //     this.location.y += 1;
+    // }
     this.#wrapGrid();
   };
 
-  #moveForward = (): void => {
-    switch (this.direction) {
-      case "e":
-        this.location.x += 1;
-        break;
-      case "w":
-        this.location.x -= 1;
-        break;
-      case "n":
-        this.location.y -= 1;
-        break;
-      case "s":
-        this.location.y += 1;
-    }
+  #moveBackward = (): void => {
+    const moveKey: string = "b" + this.direction;
+    const moveAction: (() => void) | undefined = this.moveMap.get(moveKey);
+    console.log(moveAction == undefined);
+    if (moveAction != undefined) moveAction();
+    // switch (this.direction) {
+    //   case "e":
+    //     this.location.x -= 1;
+    //     break;
+    //   case "w":
+    //     this.location.x += 1;
+    //     break;
+    //   case "s":
+    //     this.location.y -= 1;
+    //     break;
+    //   case "n":
+    //     this.location.y += 1;
+    // }
     this.#wrapGrid();
   };
 
