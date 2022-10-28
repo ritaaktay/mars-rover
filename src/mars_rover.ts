@@ -1,3 +1,5 @@
+import { match } from "ts-pattern";
+
 export class MarsRover {
   private location: {
     x: number;
@@ -46,6 +48,15 @@ export class MarsRover {
     return moveMap;
   };
 
+  #matchMove = (commands: string): void => {
+    match(commands)
+      .with("fe", "bw", () => (this.location.x += 1))
+      .with("fw", "be", () => (this.location.x -= 1))
+      .with("fs", "bn", () => (this.location.y += 1))
+      .with("fn", "bs", () => (this.location.y -= 1))
+      .run();
+  };
+
   #isCommand = (char: any): char is command => {
     return true;
   };
@@ -67,16 +78,16 @@ export class MarsRover {
   };
 
   #moveForward = (): void => {
-    const moveKey: string = "f" + this.direction;
-    const moveAction: (() => void) | undefined = this.moveMap.get(moveKey);
-    if (moveAction != undefined) moveAction();
+    const moveCommand: string = "f" + this.direction;
+    this.#matchMove(moveCommand);
     this.#wrapGrid();
   };
 
   #moveBackward = (): void => {
-    const moveKey: string = "b" + this.direction;
-    const moveAction: (() => void) | undefined = this.moveMap.get(moveKey);
-    if (moveAction != undefined) moveAction();
+    const moveCommand: string = "b" + this.direction;
+    this.#matchMove(moveCommand);
+    // const moveAction: (() => void) | undefined = this.moveMap.get(moveKey);
+    // if (moveAction != undefined) moveAction();
     this.#wrapGrid();
   };
 
